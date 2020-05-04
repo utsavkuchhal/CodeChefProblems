@@ -1,0 +1,51 @@
+import java.util.Scanner;
+class CoronaVirusSpread {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scn = new Scanner(System.in);
+		
+		int t = scn.nextInt();
+		
+		while(t > 0) {
+			int N = scn.nextInt();
+			int[] arr = new int[N];
+			for(int j = 0; j < arr.length; j++)
+			{
+				arr[j] = scn.nextInt();
+			}
+			CoronaVirusSpread(arr);
+			t--;
+		}
+		
+		
+	}
+
+	public static void CoronaVirusSpread(int[] arr)
+	{
+		int[] array = new int[arr.length];
+		
+		int max = Integer.MIN_VALUE;
+		int count  = 1;
+		int min = Integer.MAX_VALUE;
+		
+		for(int i = 1; i < arr.length; i++)
+		{
+			array[i] = arr[i] - arr[i - 1];
+		}
+		
+		for(int i = 1; i < arr.length; i++)
+		{
+			if(array[i] <= 2)
+				count++;
+			else {
+				max = Math.max(max, count);
+				min = Math.min(min, count);
+				count = 1;
+				
+			}
+		}
+		
+		System.out.println((Math.min(count,min))   + " "  + (Math.max(max, count)));
+	}
+}
